@@ -1,0 +1,181 @@
+- install composer local in a project:
+curl -sS https://getcomposer.org/installer | php
+
+- install laravel
+php composer.phar require "laravel/installer"
+
+- set path to run laravel (composer local to project)
+export PATH="$HOME/ws-learn/laravel/vendor/bin:$PATH"
+
+- Build new project: stay where to keep new project (named blog) and type
+laravel new blog
+
+- change permission for storage and cache:
+chmod -R o+w ./laravel-prj/bootstrap/cache/
+chmod -R o+w ./laravel-prj/storage
+
+- change key: go in project folder then
+In config\app.php change:
+'cipher' => 'whatever it is',
+to
+'cipher' => 'AES-256-CBC',
+
+php artisan key:generate
+then copy key in app.php file
+RESTART lavarel: php artisan serve --port=8080
+
+- Start lavarel: cd in project folder
+php artisan serve --port=8080
+in browser:
+localhost:8080
+
+* Create database:
+- Create database use command line (can be done in lavarel?)
+e.g.
+mysql -u root -p
+create database blog_db
+
+- update database connection in:
+config/database.php
+
+- find sql socket to confix db connections:
+mysql -u root -p
+use database blog_db
+show variables like '%sock%'
+
+- create tables using framework, others git pull then run command to update database:
+create table "tasks", this script in file create_tasks_table:
+php artisan make:migration create_tasks_table --create=tasks
+
+- other developers want to update DB: after git pull, run:
+php artisan migrate
+
+- Create model for CRUD or ORM (Object-relational mapper) to query & store data
+php artisan make:model Task
+(lavarel automatically create Task model for table tasks - same name with model and plural)
+
+- Define routes:
+Route maps url to a function, which is default in app/Http/routes.php
+
+- Move model (e.g., Task) to folder app/models insteand of app/:
+In composer.json \ "autoload": "classmap" add "app/models". look like:
+    "autoload": {
+        "classmap": [
+            "database",
+            "app/models"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+
+- Use Model repository to reuse data -> reduce query DB again and again (intermediate quick start).
+
+- Dependency injection is a fancy phrase that essentially means this: class dependencies are "injected" into the class via the constructor or, in some cases, "setter" methods.
+
+- Make a controller
+php artisan make:controller DeploymentController --plain
+
+- Migrate on a database connection that is not default
+Schema::connection('foo')->create('users', function ($table) {
+    $table->increments('id');
+});
+
+- Add a column to a table
+php artisan make:migration add_configs_to_environments --table=environments
+then use Schema::table()
+Schema::table('users', function($table)
+{
+    $table->integer('paid');
+});
+
+- create a model for a table with migration option
+php artisan make:model command_log -m
+
+- Map a model to a table: by default a model is map to a table having name which is plural form of the model
+class Flight extends Model
+{
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'my_flights';
+}
+
+- Run raw sql command in migration (create table log in mysql db connection):
+    public function up()
+    {
+        Schema::table('logs', function(Blueprint $table)
+        {
+            $sql = 'CREATE TABLE `logs` (
+              `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
+              `station_id` bigint(11) DEFAULT NULL,
+              `user_id` int(11) DEFAULT NULL,
+              `command` text,
+              `datetime` datetime DEFAULT NULL,
+              PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;';
+
+            DB::connection('mysql')->getPdo()->exec($sql);
+        });
+    }
+or:
+-
+In the Laravel 4 manual - it talks about doing raw commands like this:
+
+DB::select(DB::raw('RENAME TABLE photos TO images'));
+edit: I just found this in the Laravel 4 documentation which is probably better:
+
+DB::statement('drop table users');
+Update: In Laravel 4.1 (maybe 4.0 - I'm not sure) - you can also do this for a raw Where query:
+
+$users = User::whereRaw('age > ? and votes = 100', array(25))->get();
+
+-
+Schema::table('users', function(Blueprint $table){
+    $sql = 'ALTER TABLE `users` MODIFY `age` DATETIME';
+    DB::connection()->getPdo()->exec($sql);
+});
+
+- After change db(?)
+php artisan migrate:refresh
+php artisan db:seed
+
+- create a request input to pass to a route:
+/Users/thangdo/ws-sisu/ws-apollo/resources/views/app/stations/addons/note
+            function saveNotes{{$station_id = $station['info']['station_name']}}(id) {
+
+                var notes = $("#{{$station_id = $station['info']['station_name']}}-notes").val();
+
+                var data = {
+                    _token: "{{csrf_token()}}",
+                    station: id,
+                    notes: notes
+                }
+
+                $.ajax({
+                            type: "POST",
+                            data: data,
+                            url: "{{route('add_note_route')}}",
+
+                            success: function (data) {
+                                //alert(data);
+                            }
+                        })
+                        .done(function (data) {
+
+                            $("#{{$station['info']['station_name']}}-notes-wrapper").prepend(data);
+                            //alert(data);
+                           document.getElementById("{{$station['info']['station_name']}}-notes").value = "";
+
+                        })
+                        .fail(function () {
+                            //alert("error");
+                        });
+
+                return false;
+            }
+
+- Set up ssh:
+https://laravelcollective.com/docs/5.0/ssh

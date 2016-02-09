@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, AutoDiaryActivity!</string>
+    <string name="app_name">AutoDiary</string>
+    <string name="Start"></string>
+    <string name="WebserverAddress">Webserver Name or IP</string>
+    <string name="RecognizedActivity">Recognized Activity</string>
+    <string name="local_service_started">Autodiary started</string>
+    <string name="local_service_stopped">Autodiary stopped</string>
+    <string name="local_service_label">Autodiary is running</string>
+    <string name="local_service_connected">Autodiary connected</string>
+    <string name="local_service_disconnected">Autodiary disconnected</string>
+    <string name="bt_stop_label">Stop</string>
+</resources>

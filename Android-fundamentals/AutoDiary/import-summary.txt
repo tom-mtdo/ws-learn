@@ -1,0 +1,208 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* DataProcess/
+* DataProcess/AutoDiaryDataProcess/
+* DataProcess/AutoDiaryDataProcess/build.xml
+* DataProcess/AutoDiaryDataProcess/build/
+* DataProcess/AutoDiaryDataProcess/build/classes/
+* DataProcess/AutoDiaryDataProcess/build/classes/.netbeans_automatic_build
+* DataProcess/AutoDiaryDataProcess/build/classes/.netbeans_update_resources
+* DataProcess/AutoDiaryDataProcess/build/classes/autodiarydataprocess/
+* DataProcess/AutoDiaryDataProcess/build/classes/autodiarydataprocess/AutoDiaryDataProcess.class
+* DataProcess/AutoDiaryDataProcess/build/classes/autodiarydataprocess/TrainingData.class
+* DataProcess/AutoDiaryDataProcess/build/classes/autodiarydataprocess/test.class
+* DataProcess/AutoDiaryDataProcess/manifest.mf
+* DataProcess/AutoDiaryDataProcess/nbproject/
+* DataProcess/AutoDiaryDataProcess/nbproject/build-impl.xml
+* DataProcess/AutoDiaryDataProcess/nbproject/genfiles.properties
+* DataProcess/AutoDiaryDataProcess/nbproject/private/
+* DataProcess/AutoDiaryDataProcess/nbproject/private/config.properties
+* DataProcess/AutoDiaryDataProcess/nbproject/private/private.properties
+* DataProcess/AutoDiaryDataProcess/nbproject/private/private.xml
+* DataProcess/AutoDiaryDataProcess/nbproject/project.properties
+* DataProcess/AutoDiaryDataProcess/nbproject/project.xml
+* DataProcess/AutoDiaryDataProcess/src/
+* DataProcess/AutoDiaryDataProcess/src/autodiarydataprocess/
+* DataProcess/AutoDiaryDataProcess/src/autodiarydataprocess/AutoDiaryDataProcess.java
+* DataProcess/AutoDiaryDataProcess/src/autodiarydataprocess/TrainingData.java
+* DataProcess/AutoDiaryDataProcess/src/autodiarydataprocess/test.java
+* DataProcess/MtdoHomepage/
+* DataProcess/MtdoHomepage/build/
+* DataProcess/MtdoHomepage/build/web/
+* DataProcess/MtdoHomepage/build/web/WEB-INF/
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/spring-jdbc-3.0.2.RELEASE.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/spring-jms-3.0.2.RELEASE.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/spring-orm-3.0.2.RELEASE.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/spring-oxm-3.0.2.RELEASE.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/spring-struts-3.0.2.RELEASE.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/spring-test-3.0.2.RELEASE.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/spring-tx-3.0.2.RELEASE.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/spring-web-3.0.2.RELEASE.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/spring-webmvc-3.0.2.RELEASE.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/spring-webmvc-portlet-3.0.2.RELEASE.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/standard-1.0.2.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/standard.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/struts-core-1.3.8.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/struts-el-1.3.8.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/struts-extras-1.3.8.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/struts-faces-1.3.8.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/struts-mailreader-dao-1.3.8.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/struts-scripting-1.3.8.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/struts-taglib-1.3.8.jar
+* DataProcess/MtdoHomepage/build/web/WEB-INF/lib/struts-tiles-1.3.8.jar
+* data/
+* data/Amin.rar
+* data/Amin/
+* data/Amin/Data1.xlsx
+* data/Amin/Data2.xlsx
+* data/Amin/Data6.xlsx
+* data/Amin/Data7.xlsx
+* data/Amin/Data8.xlsx
+* data/Amin/Readme.txt
+* data/Joao.rar
+* data/Joao/
+* data/Joao/data1.txt
+* data/Joao/data2.txt
+* data/Joao/data6.txt
+* data/Joao/data7.txt
+* data/Joao/data8.txt
+* data/Joao/readme.txt
+* data/Readme.txt
+* data/RunTraining.txt
+* data/TrainPatentTest.txt
+* data/WRDS-Training.csv
+* data/WRDS-Training.txt
+* data/WRDS-Training2.csv
+* data/WRDS-Training2.txt
+* data/WRDS-Training3.csv
+* data/WRDS-Training3.txt
+* data/WRDS-Training4.csv
+* data/WRDS-Training4.txt
+* data/Wanita.rar
+* data/Wanita/
+* data/Wanita/Readme.txt
+* data/Wanita/WRDS-Training.csv
+* data/Wanita/data1WalkWindow.txt
+* data/Wanita/data2RunWindow.txt
+* data/Wanita/data6DrivingWindow.txt
+* data/Wanita/data7StillWindow.txt
+* data/Wanita/data8WalkWindow.txt
+* data/data1.xlsx
+* data/data10.txt
+* data/data10.xlsx
+* data/data11.txt
+* data/data11.xlsx
+* data/data1Walk.txt
+* data/data1WalkMaxMinusMinBinary.txt
+* data/data1WalkMinMax01.txt
+* data/data1WalkMinMaxAvr.txt
+* data/data1WalkMinMaxMinus01.txt
+* data/data1WalkMinMinus01.txt
+* data/data1WalkWindow.txt
+* data/data2.xlsx
+* data/data2/
+* data/data2/activities.txt
+* data/data2/data.txt
+* data/data2/gpsData.txt
+* data/data2Run.txt
+* data/data2RunMaxMinusMinBinary.txt
+* data/data2RunMinMax01.txt
+* data/data2RunMinMaxAvr.txt
+* data/data2RunMinMaxMinus01.txt
+* data/data2RunMinMinus01.txt
+* data/data2RunWindow.txt
+* data/data3.xlsx
+* data/data3Walk.txt
+* data/data4.xlsx
+* data/data4WR.txt
+* data/data5.xlsx
+* data/data5Walk.txt
+* data/data6.txt
+* data/data6.xlsx
+* data/data6Driving.txt
+* data/data6DrivingMaxMinusMinBinary.txt
+* data/data6DrivingMinMax01.txt
+* data/data6DrivingMinMaxAvr.txt
+* data/data6DrivingMinMaxMinus01.txt
+* data/data6DrivingMinMinus01.txt
+* data/data6DrivingWindow.txt
+* data/data7.txt
+* data/data7.xlsx
+* data/data7Still.txt
+* data/data7StillMaxMinusMinBinary.txt
+* data/data7StillMinMax01.txt
+* data/data7StillMinMaxAvr.txt
+* data/data7StillMinMaxMinus01.txt
+* data/data7StillMinMinus01.txt
+* data/data7StillWindow.txt
+* data/data8.txt
+* data/data8.xlsx
+* data/data8Walk.txt
+* data/data8WalkMinMax01.txt
+* data/data8WalkMinMaxMinus01.txt
+* data/data8WalkMinMinus01.txt
+* data/data8WalkWindow.txt
+* data/data9.txt
+* data/data9.xlsx
+* data/data9Walk.txt
+* data/datav2.xlsx
+* data/original/
+* data/original/activities.txt
+* data/original/data.txt
+* data/original/data1.txt
+* data/original/data10.txt
+* data/original/data11.txt
+* data/original/data2.txt
+* data/original/data3.txt
+* data/original/data4.txt
+* data/original/data5.txt
+* data/original/data6.txt
+* data/original/data7.txt
+* data/original/data8.txt
+* data/original/data9.txt
+* data/original/dataV2.txt
+* data/original/datav2_2.txt
+* data/original/datav2_3.txt
+* data/original/gpsData.txt
+* data/store/
+* data/store/data1Walk.dat
+* data/store/data1WalkPost.txt
+* data/store/data2Run.dat
+* data/store/data2RunPost.txt
+* hs_err_pid4116.log
+* hs_err_pid6096.log
+* proguard.cfg
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* assets/ => app/src/main/assets
+* lint.xml => app/lint.xml
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
