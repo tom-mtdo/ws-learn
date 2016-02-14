@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+
+    You may not modify, use, reproduce, or distribute this software except in
+    compliance with  the terms of the License at:
+    http://java.net/projects/javaeetutorial/pages/BerkeleyLicense
+
+-->
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    
+    <h:head>
+        <h:outputStylesheet name="css/stylesheet.css"/>
+    </h:head>
+    <h:body>
+        
+        <h:form>
+            <h2>Ticket Reservation Form</h2>
+            <p>Welcome to the reservation form for top hit</p>
+            <p>
+                <label>Name (First Last):</label>
+                <br>
+                <input type="text" jsf:id="name" name="name"
+                       value="#{reservationBean.name}"
+                       required="required" title="Enter your name"/>
+            </p>            
+            <p>
+                <label>Email:</label>
+                <br>
+                <input type="email" jsf:id="email" name="email"
+                       value="#{reservationBean.email}"
+                       required="required" title="Enter your email"/>
+            </p>
+            <p>
+                <label>Reenter Email Again:</label>
+                <br>
+                <input type="email" jsf:id="emailAgain" name="emailAgain"
+                       value="#{reservationBean.emailAgain}"
+                       required="required" title="Confirm your email"/>
+            </p>
+            <p>
+                <label>Performance Date:</label>
+                <br>
+                <input type="date" jsf:id="date" name="date"
+                       value="#{reservationBean.performanceDate}"
+                       required="required" title="Choose a date"/>
+            </p>
+            <p>
+                <label>Number of ticket:</label>
+                <br>
+                <h:inputText id="noTicket" value="#{reservationBean.noTicket}"
+                       <f:ajax event="change" render="total"
+                               listener="#{reservationBean.calculateTotal}"/>
+            </p>
+            <p>
+                <label>Ticket Price:</label>
+                <br>
+                <h:inputText p:type="number" id="ticketPrice"
+                             value="#{reservationBean.ticketPrice}"
+                             p:min="80" p:max="120"
+                             p:step="10" p:required="required"
+                    <f:ajax event="change" render="total"
+                            listener="#{reservationBean.calculateTotal}"/>
+            </p>
+            <p>
+                <label>Estimated Total:</label>
+                <br>
+                <output jsf:id="total" name="total">
+                    #{reservationBean.totalValue}
+                </output>
+            </p>
+            <p>
+                <h:commandButton value="Make Reservation"
+                                 action="confirmation"/>
+            </p>
+        </h:form>
+        
+    </h:body>
+</html>

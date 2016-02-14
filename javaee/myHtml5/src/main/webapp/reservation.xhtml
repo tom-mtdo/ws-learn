@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:head>
+        <h:outputStylesheet name="css/stylesheet.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h2>Ticket Reservation Form</h2>
+            <p>Welcome to the reservation form for top hit</p>
+            <p>
+                <label>Name (First Last):</label>
+                <br></br>
+                <input type="text" jsf:id="name" name="name"
+                       value="#{reservationBean.name}"
+                       required="required" title="Enter your name"/>
+            </p>            
+            <p>
+                <label>Email:</label>
+                <br></br>
+                <input type="email" jsf:id="email" name="email"
+                       value="#{reservationBean.email}"
+                       required="required" title="Enter your email"/>
+            </p>
+            <p>
+                <label>Reenter Email Again:</label>
+                <br></br>
+                <input type="email" jsf:id="emailAgain" name="emailAgain"
+                       value="#{reservationBean.emailAgain}"
+                       required="required" title="Confirm your email"/>
+            </p>
+            <p>
+                <label>Performance Date:</label>
+                <br></br>
+                <input type="date" jsf:id="date" name="date"
+                       value="#{reservationBean.performanceDate}"
+                       required="required" title="Choose a date"/>
+            </p>
+            <p>
+                <label>Number of ticket:</label>
+                <br></br>
+                <h:inputText id="noTicket" value="#{reservationBean.noTicket}">
+                       <f:ajax event="change" render="total"
+                               listener="#{reservationBean.calculateTotal}"/>
+                </h:inputText>
+            </p>
+            <p>
+                <label>Ticket Price:</label>
+                <br></br>
+                <h:inputText p:type="number" id="ticketPrice"
+                             value="#{reservationBean.ticketPrice}"
+                             p:min="80" p:max="120"
+                             p:step="10" p:required="required">
+                    <f:ajax event="change" render="total"
+                            listener="#{reservationBean.calculateTotal}"/>
+                </h:inputText>
+            </p>
+            <p>
+                <label>Estimated Total:</label>
+                <br></br>
+                <output jsf:id="total" name="total">
+                    #{reservationBean.totalValue}
+                </output>
+            </p>
+            <p>
+                <h:commandButton value="Make Reservation"
+                                 action="confirmation"/>
+            </p>
+        </h:form>
+        <!--
+        <h:form>
+            <h:graphicImage url="#{resource['images:duke.waving.gif']}" 
+                            alt="Duke waving his hand"/>
+            <h2>Hello, #{hello.name}!</h2>
+            <p></p>
+            <h:commandButton id="back" value="Back" action="confirmation" />
+        </h:form>
+        -->
+    </h:body>
+</html>
