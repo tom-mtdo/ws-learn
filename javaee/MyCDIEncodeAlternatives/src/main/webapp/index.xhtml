@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>CDI alternatives</title>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <div id="header">
+                <h3>Enter a string</h3>
+                it will be manipulate and 
+                    returned base on configuration to choose 
+                    which implementation of coder is chosen                
+                <h:form id="myForm">
+                    <p>
+                    <h:outputLabel for="inputString" value="Enter a string"/>
+                    <h:inputText id="inputString" value="#{coderBean.inputString}"/>
+                    </p>
+                    <p>
+                    <h:outputLabel for="inputTval" value="Enter a number 0 - 26"/>
+                    <h:inputText id="inputTval" value="#{coderBean.tval}"/>
+                    </p>                    
+                    <p>
+                    <h:commandButton id="submit" value="Transfer"
+                                     action="#{coderBean.convert}"/>
+                    </p>
+                    <p>
+                    <h:outputText id="codedString" value="#{coderBean.codedString}"/>
+                    </p>
+                    <p>
+                    <h:commandButton id="reset" value="Reset"
+                                     action="#{coderBean.reset}"/>
+                    </p>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>
+
