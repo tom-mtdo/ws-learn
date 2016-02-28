@@ -15,12 +15,12 @@
                     which implementation of coder is chosen                
                 <h:form id="myForm">
                     <p>
-                    <h:outputLabel for="inputString" value="Enter a string"/>
-                    <h:inputText id="inputString" value="#{coderBean.inputString}"/>
+                        <h:outputLabel for="inputString" value="Enter a string"/>
+                        <h:inputText id="inputString" value="#{coderBean.inputString}"/>
                     </p>
                     <p>
-                    <h:outputLabel for="inputTval" value="Enter a number 0 - 26"/>
-                    <h:inputText id="inputTval" value="#{coderBean.tval}"/>
+                        <h:outputLabel for="inputTval" value="Enter a number 0 - 26"/>
+                        <h:inputText id="inputTval" value="#{coderBean.tval}"/>
                     </p>                    
                     <p>
                         <h:selectOneRadio id="coderChooser" value="#{coderBean.choosenCoder}">
@@ -29,15 +29,15 @@
                         </h:selectOneRadio>
                     </p>
                     <p>
-                    <h:commandButton id="submit" value="Transfer"
-                                     action="#{coderBean.convert}"/>
+                        <h:commandButton id="submit" value="Transfer"
+                                         action="#{coderBean.convert}"/>
                     </p>
                     <p>
-                    <h:outputText id="codedString" value="#{coderBean.codedString}"/>
+                        <h:outputText id="codedString" value="#{coderBean.codedString}"/>
                     </p>
                     <p>
-                    <h:commandButton id="reset" value="Reset"
-                                     action="#{coderBean.reset}"/>
+                        <h:commandButton id="reset" value="Reset"
+                                         action="#{coderBean.reset}"/>
                     </p>
                 </h:form>
             </div>
