@@ -8,3 +8,13 @@
 /javaee/MyCDIProducerField/target/
 /javaee/MyCDIPayment/target/
 /javaee/MyCDIDecorating/target/
+/javaee/MyWSHelloService-war/target/
+/javaee/TestWS/target/
+/javaee/MyWSHello-appClient/target/
+/javaee/myws-service/target/
+/javaee/myws-client/nbproject/private/
+/javaee/myws-client/build/
+/javaee/CalculatorWebService/nbproject/private/
+/javaee/CalculatorWebService/build/
+/javaee/MyWSHelloService/target/
+/javaee/MyWSAppClient/target/
