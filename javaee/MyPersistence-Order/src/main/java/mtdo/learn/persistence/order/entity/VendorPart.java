@@ -1,0 +1,73 @@
+package mtdo.learn.persistence.order.entity;
+
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="PERSISTENCE_ORDER_VENDOR_PART")
+public class VendorPart implements Serializable {
+
+    private Long vendorPartNumber;
+    private String description;
+    private double price;
+    private Part part;
+    private Vendor vendor;
+
+    public VendorPart() {}
+    
+    public VendorPart(String description, double price, Part part, Vendor vendor) {
+        this.description = description;
+        this.price = price;
+        this.part = part;
+        this.vendor = vendor;
+    }
+    
+    @Id
+    public Long getVendorPartNumber() {
+        return vendorPartNumber;
+    }
+
+    public void setVendorPartNumber(Long vendorPartNumber) {
+        this.vendorPartNumber = vendorPartNumber;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Part getPart() {
+        return part;
+    }
+
+    public void setPart(Part part) {
+        this.part = part;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "VENDORID") //, referencedColumnName = "VENDORID")
+    public Vendor getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
+    }
+
+    
+}
