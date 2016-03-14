@@ -19,3 +19,6 @@
 /javaee/MyWSHelloService/target/
 /javaee/MyWSAppClient/target/
 /javaee/MySWWebClient/target/
+/javaee/JaxrsHelloWorld/target/
+/javaee/MyJaxRS-rsvp/target/
+/javaee/MyPersistence-Order/target/

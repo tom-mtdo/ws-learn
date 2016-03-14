@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/order-template.xhtml">
+        <ui:define name="title">Order - My Java Persistence Example</ui:define>
+        
+        <ui:define name="viewAllOrders">
+            <h:dataTable
+                var="order"
+                summary="Table of orders"
+                value="#{orderManager.orders}"
+                rules="all"
+                cellpadding="5">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Order ID" />
+                    </f:facet>
+                    <h:outputText value="#{order.orderId}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ShipmentInfo" />
+                    </f:facet>
+                    <h:outputText value="#{order.shipmentInfo}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Status" />
+                    </f:facet>
+                    <h:outputText value="#{order.status}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Last Updated" />
+                    </f:facet>
+                    <h:outputText value="#{order.lastUpdate}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Discount" />
+                    </f:facet>
+                    <h:outputText value="#{order.discount}"/>
+                </h:column>
+                
+            </h:dataTable>
+        </ui:define>
+        
+        <ui:define name="createNewOrder">
+            <h:form id="formNewOrder">
+                <h:outputLabel for="imputTextOrderID" rendered="true" value="Order ID:" />
+                <h:inputText id="imputTextOrderID" required="true" value="#{orderManager.newOrderID}"/>
+                
+                <br/><h:outputLabel for="inputTextShipmentInfo" rendered="true" value="Shipment Info:" />
+                <h:inputText id="inputTextShipmentInfo" required="true" value="#{orderManager.newShipmentInfo}" />
+                
+                <br/><h:outputLabel for="statusMenu" rendered="true" value="Status: "/>
+                <h:selectOneMenu id="statusMenu" required="true" value="#{orderManager.newOrderStatus}">
+                    <f:selectItem itemValue="Y" itemLabel="Complete" />
+                    <f:selectItem itemValue="N" itemLabel="Pending" />
+                </h:selectOneMenu>
+                
+                <br/><h:outputLabel for ="discountMenu" rendered="true" value="Discount: "/>
+                <h:selectOneMenu id = "discountMenu" required="true" value="#{orderManager.newOrderDiscount}">
+                    <f:selectItem itemValue="0" itemLabel="0 %"/>
+                    <f:selectItem itemValue="5" itemLabel="5 %"/>
+                    <f:selectItem itemValue="10" itemLabel="10 %"/>
+                    <f:selectItem itemValue="15" itemLabel="15 %"/>
+                    <f:selectItem itemValue="20" itemLabel="20 %"/>
+                    <f:selectItem itemValue="25" itemLabel="25 %"/>
+                    <f:selectItem itemValue="30" itemLabel="30 %"/>
+                </h:selectOneMenu>
+                
+                <br/>
+                <h:commandButton id="submit" value="Submit" action="#{orderManager.submitOrder}"/>
+            </h:form>
+            Order ID: <br/>
+            Shipment Info:
+        </ui:define>
+    </ui:composition>
+</html>
+
