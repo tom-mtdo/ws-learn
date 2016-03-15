@@ -1,9 +1,12 @@
 package mtdo.learn.persistence.order.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +17,7 @@ public class Vendor implements Serializable {
     private String address;
     private String contact;
     private String phone;
-//    private Collection<VendorPart> vendorParts;
+    private Collection<VendorPart> vendorParts;
 
     public Vendor() {}
     
@@ -40,6 +43,15 @@ public class Vendor implements Serializable {
         return name;
     }
 
+    @OneToMany(cascade = ALL, mappedBy="vendor")
+    public Collection<VendorPart> getVendorParts() {
+        return vendorParts;
+    }
+
+    public void setVendorParts(Collection<VendorPart> vendorParts) {
+        this.vendorParts = vendorParts;
+    }
+    
     public void setName(String name) {
         this.name = name;
     }

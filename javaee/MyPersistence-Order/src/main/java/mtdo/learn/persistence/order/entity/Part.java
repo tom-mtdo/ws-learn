@@ -12,7 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
@@ -30,6 +32,11 @@ import static javax.persistence.TemporalType.DATE;
     @PrimaryKeyJoinColumn(name = "PARTNUMBER", referencedColumnName = "PARTNUMBER"),
     @PrimaryKeyJoinColumn(name = "REVISION", referencedColumnName = "REVISION")
 })
+@NamedQuery(
+    name="findAllParts",
+    query="SELECT p FROM Part p "+
+          "ORDER BY p.partNumber"
+)
 public class Part implements Serializable {
     private String partNumber;
     private int revision;
@@ -39,7 +46,7 @@ public class Part implements Serializable {
     private String specification;
     private Part bomPart;   // link to parent part
     private List<Part> parts;    // link to children (or component) part
-//    private VendorPart vendorPart;
+    private VendorPart vendorPart;
  
     public Part(){}
     
@@ -73,6 +80,15 @@ public class Part implements Serializable {
         return revision;
     }
 
+    @OneToOne(mappedBy = "part")
+    public VendorPart getVendorPart() {
+        return vendorPart;
+    }
+
+    public void setVendorPart(VendorPart vendorPart) {
+        this.vendorPart = vendorPart;
+    }
+    
     public void setRevision(int revision) {
         this.revision = revision;
     }
