@@ -6,11 +6,29 @@ import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PERSISTENCE_ORDER_VENDOR")
+@Table(name="MY_PERSISTENCE_ORDER_VENDOR")
+@NamedQueries({
+    @NamedQuery(
+        name="findVendorsByPartialName",
+        query="SELECT v " +
+              "FROM Vendor v " +
+              "WHERE LOCATE(:name, v.name) > 0"
+    ),
+    @NamedQuery(
+        name="findVendorByCustomerOrder",
+        query="SELECT DISTINCT l.vendorPart.vendor " +
+              "FROM CustomerOrder co, IN(co.lineItems) l " +
+              "WHERE co.orderId = :id " +
+              "ORDER BY l.vendorPart.vendor.name"
+    )
+})
+
 public class Vendor implements Serializable {
     private int vendorId;
     private String name;

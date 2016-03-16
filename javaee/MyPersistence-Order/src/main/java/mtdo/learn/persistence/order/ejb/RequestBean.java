@@ -20,6 +20,15 @@ public class RequestBean {
     @PersistenceContext
     private EntityManager em;
     
+    public void removeOrder(Integer orderId){
+        try{
+            CustomerOrder order = em.find(CustomerOrder.class, orderId);
+            em.remove(order);
+        }catch(Exception e){
+            throw new EJBException(e.getMessage());
+        }
+    }
+    
     public void createOrder(Integer orderId, char status, int discount, String shipmentInfo){
         try{
             CustomerOrder order = new CustomerOrder(orderId, status, discount, shipmentInfo);

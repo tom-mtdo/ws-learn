@@ -44,6 +44,16 @@
                     </f:facet>
                     <h:outputText value="#{order.discount}"/>
                 </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Actions" />
+                    </f:facet>
+                    <h:form>
+                        <h:commandLink value="Delete" actionListener="#{orderManager.removeOrder}" action="order">
+                            <f:param name="deleteOrderId" id="deleteOrderId" value="#{order.orderId}"/>
+                        </h:commandLink>
+                    </h:form>
+                </h:column>
                 
             </h:dataTable>
         </ui:define>

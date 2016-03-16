@@ -21,14 +21,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import static javax.persistence.TemporalType.DATE;
 
-/**
- *
- * @author thangdo
- */
 @IdClass(PartKey.class)
 @Entity
-@Table(name="PERSISTENCE_ORDER_PART")
-@SecondaryTable(name = "PERSISTENCE_ORDER_PART_DETAIL", pkJoinColumns = {
+@Table(name="MY_PERSISTENCE_ORDER_PART")
+@SecondaryTable(name = "MY_PERSISTENCE_ORDER_PART_DETAIL", pkJoinColumns = {
     @PrimaryKeyJoinColumn(name = "PARTNUMBER", referencedColumnName = "PARTNUMBER"),
     @PrimaryKeyJoinColumn(name = "REVISION", referencedColumnName = "REVISION")
 })
@@ -79,6 +75,10 @@ public class Part implements Serializable {
     public int getRevision() {
         return revision;
     }
+    
+    public void setRevision(int revision) {
+        this.revision = revision;
+    }
 
     @OneToOne(mappedBy = "part")
     public VendorPart getVendorPart() {
@@ -89,10 +89,6 @@ public class Part implements Serializable {
         this.vendorPart = vendorPart;
     }
     
-    public void setRevision(int revision) {
-        this.revision = revision;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -110,7 +106,7 @@ public class Part implements Serializable {
         this.revisionDate = revisionDate;
     }
 
-    @Column(table = "PERSISTENCE_ORDER_PART_DETAIL")
+    @Column(table = "MY_PERSISTENCE_ORDER_PART_DETAIL")
     @Lob
     public Serializable getDrawing() {
         return drawing;
@@ -120,7 +116,7 @@ public class Part implements Serializable {
         this.drawing = drawing;
     }
 
-    @Column(table = "PERSISTENCE_ORDER_PART_DETAIL")
+    @Column(table = "MY_PERSISTENCE_ORDER_PART_DETAIL")
     @Lob
     public String getSpecification() {
         return specification;
@@ -143,7 +139,7 @@ public class Part implements Serializable {
         this.bomPart = bomPart;
     }
 
-    @OneToMany(mappedBy="bomPat")    
+    @OneToMany(mappedBy="bomPart")    
     public List<Part> getParts() {
         return parts;
     }

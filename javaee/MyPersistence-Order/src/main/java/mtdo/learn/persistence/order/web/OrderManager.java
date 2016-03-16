@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.UIParameter;
+import javax.faces.event.ActionEvent;
 import mtdo.learn.persistence.order.ejb.RequestBean;
 import mtdo.learn.persistence.order.entity.CustomerOrder;
 
@@ -24,6 +26,16 @@ public class OrderManager implements Serializable{
     private char    newOrderStatus;
     private int     newOrderDiscount;
 
+    public void removeOrder(ActionEvent event){
+        try{
+            UIParameter para = (UIParameter) event.getComponent().findComponent("deleteOrderId");
+            Integer id = Integer.parseInt(para.getValue().toString());
+            requestBean.removeOrder(id);
+        }catch(Exception e){
+            logger.warning("Error when deleting order");
+        }
+    }
+    
     public List<CustomerOrder> getOrders(){
         try {
             this.orders = requestBean.getOrders();
@@ -36,9 +48,11 @@ public class OrderManager implements Serializable{
     public void submitOrder(){
         try{
             requestBean.createOrder(newOrderID, newOrderStatus, newOrderDiscount, newShipmentInfo);
+            
             logger.log(Level.INFO, "Create new order: order ID={0}, status={1}, " 
                     + "discount={2}, and shipping info={3}.",
                     new Object[]{newOrderID, newOrderStatus, newOrderDiscount, newShipmentInfo});
+            
             this.newOrderID = null;
             this.newOrderDiscount = 0;
 //            this.newOrderStatus = null;
