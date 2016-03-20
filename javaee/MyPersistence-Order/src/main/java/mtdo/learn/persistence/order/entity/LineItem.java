@@ -27,20 +27,21 @@ import javax.persistence.Table;
     @NamedQuery(
     name="findLineItemById",
     query="SELECT DISTINCT l FROM LineItem l " +
-          "WHERE l.itemId = :itemId AND l.customerOrder.orderId = :orderId")
+          "WHERE l.itemId = :itemId AND l.customerOrder.orderId = :orderId")    
 })
 public class LineItem implements Serializable {
     private int itemId;
     private int quantity;
-    private CustomerOrder customerOrder;
     private VendorPart vendorPart;
+    private CustomerOrder customerOrder;
+    
 
     public LineItem() {
     }
 
-    public LineItem(int itemId, int quantity, CustomerOrder customerOrder, VendorPart vendorPart) {
-        this.customerOrder = customerOrder;
-        this.itemId = itemId;
+    public LineItem(CustomerOrder order, int quantity, VendorPart vendorPart) {
+        this.customerOrder = order;
+        this.itemId = order.getNextId();
         this.quantity = quantity;        
         this.vendorPart = vendorPart;
     }

@@ -57,7 +57,7 @@ public class VendorPart implements Serializable {
     
     @TableGenerator(
             name = "myVendorPartGen",
-            table = "PERSISTENCE_ORDER_SEQUENCE_GENERATOR",
+            table = "MY_PERSISTENCE_ORDER_SEQUENCE_GENERATOR",
             pkColumnName = "GEN_KEY",
             valueColumnName = "GEN_VALUE",
             pkColumnValue = "VENDOR_PART_ID",

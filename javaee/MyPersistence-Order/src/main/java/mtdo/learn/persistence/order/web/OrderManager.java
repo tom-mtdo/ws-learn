@@ -11,6 +11,7 @@ import javax.faces.component.UIParameter;
 import javax.faces.event.ActionEvent;
 import mtdo.learn.persistence.order.ejb.RequestBean;
 import mtdo.learn.persistence.order.entity.CustomerOrder;
+import mtdo.learn.persistence.order.entity.LineItem;
 
 @ManagedBean
 @SessionScoped
@@ -19,13 +20,44 @@ public class OrderManager implements Serializable{
     @EJB
     RequestBean requestBean;
     
-    private List<CustomerOrder> orders;
+    private String vendorName;
+    private List<String> vendorSearchResults;
     
+    private Integer currentOrder;
+    private List<CustomerOrder> orders;    
     private Integer newOrderID;
     private String  newShipmentInfo;
     private char    newOrderStatus;
     private int     newOrderDiscount;
 
+    public List<LineItem> getLineItems(){
+        try{
+            return requestBean.getLineItems(this.currentOrder);
+        }catch(Exception e){
+            logger.warning(e.getMessage());
+            return null;
+        }
+    }
+
+    public List<LineItem> getAllLineItems(){
+        try{
+            return requestBean.getLineItems(this.currentOrder);
+        }catch(Exception e){
+            logger.warning(e.getMessage());
+            return null;
+        }
+    }
+    
+    public void findVendors(){
+        try{
+            this.vendorSearchResults = requestBean.findVendorsByPartialName(vendorName);
+            logger.log(Level.INFO, "Found {0} vendor(s) using search string {1}", 
+                    new Object[]{vendorSearchResults.size(), vendorName});
+        } catch(Exception e){
+            logger.warning("Problem searching for Vendors");
+        }
+    }
+    
     public void removeOrder(ActionEvent event){
         try{
             UIParameter para = (UIParameter) event.getComponent().findComponent("deleteOrderId");
@@ -41,6 +73,7 @@ public class OrderManager implements Serializable{
             this.orders = requestBean.getOrders();
         } catch (Exception e){
             logger.warning("Could not get orders.");
+            logger.warning(e.getMessage());
         }
         return this.orders;
     }
@@ -61,6 +94,30 @@ public class OrderManager implements Serializable{
             logger.warning("Problem creating order in submitOrder");
         }
         
+    }
+    
+    public Integer getCurrentOrder() {
+        return currentOrder;
+    }
+
+    public void setCurrentOrder(int currentOrder) {
+        this.currentOrder = currentOrder;
+    }    
+
+    public List<String> getVendorSearchResults() {
+        return vendorSearchResults;
+    }
+
+    public void setVendorSearchResults(List<String> vendorSearchResults) {
+        this.vendorSearchResults = vendorSearchResults;
+    }
+
+    public String getVendorName() {
+        return vendorName;
+    }
+
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
     }
     
     public Integer getNewOrderID() {

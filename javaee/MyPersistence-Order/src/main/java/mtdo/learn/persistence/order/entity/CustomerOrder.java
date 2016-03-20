@@ -110,5 +110,9 @@ public class CustomerOrder implements Serializable {
         }
         return (ammount * (100 - getDiscount()))/100;
     }
+
+    public void addLineItem(LineItem line) {
+        this.lineItems.add(line);
+    }
     
 }

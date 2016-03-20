@@ -97,5 +97,9 @@ public class Vendor implements Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public void addVendorPart(VendorPart vendorPart) {
+        this.vendorParts.add(vendorPart);
+    }
     
 }

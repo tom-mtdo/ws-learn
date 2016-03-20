@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+      
+    <ui:composition template="lineItem-template.xhtml">
+        <ui:define name="title">
+            List items for order #{orderManager.currentOrder}
+        </ui:define>
+        <ui:define name="body">
+            <h:dataTable value="#{orderManager.allLineItems}"
+                         var="lineItem"
+                         summary="Table of line items"
+                         cellpadding="5"
+                         rules="ALL">
+                <h:column>
+                    <f:facet name="header"><h:outputLabel value="Item Id"/></f:facet>
+                    <h:outputText value="#{lineItem.itemId}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputLabel value="Quantity"/></f:facet>
+                    <h:outputText value="#{lineItem.quantity}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputLabel value="Vendor Part Number"/></f:facet>
+                    <h:outputText value="#{lineItem.vendorPart.vendorPartNumber}"/>
+                </h:column>
+
+            </h:dataTable>
+        </ui:define>
+    </ui:composition>
+        
+</html>
+

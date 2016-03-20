@@ -89,6 +89,29 @@
             Order ID: <br/>
             Shipment Info:
         </ui:define>
+        
+        <ui:define name="findVendors">
+            <h:form id="formFindVendors">
+                <h:outputLabel for="textVendorName" value="Search for Vendors:"/>
+                <h:inputText id="textVendorName" value="#{orderManager.vendorName}"/>
+                <h:commandButton id="findVendor" value="Find Vendor" action="#{orderManager.findVendors}"/>
+            </h:form>
+        </ui:define>
+        <ui:define name="vendorTable">
+            <h:dataTable var="vendorName"
+                         value="#{orderManager.vendorSearchResults}"
+                         rules="all"
+                         cellpadding="5"
+                         summary="Table of vendors"
+                         >
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Vendor Name"/>
+                    </f:facet>
+                    <h:outputText value="#{vendorName}"/>
+                </h:column>
+            </h:dataTable>
+        </ui:define>
     </ui:composition>
 </html>
 

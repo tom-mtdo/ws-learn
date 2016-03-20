@@ -10,17 +10,19 @@
         <ui:define name="content">
             <h:form id="GuessForm">
                 <h3>Guess number between #{guessNumBean.lowNum} and #{guessNumBean.highNum}</h3>
-                
                 <p></p>
                 <h:outputLabel for="number">Guess a number</h:outputLabel>
+				
+				<h:inputText id="number2">
+				</h:inputText>
                 <h:inputText id="number"
                              value="#{guessNumBean.guessNum}"/>
                 <p></p>                
                 <h:commandButton id="submit" value="Submit" 
-                                 action="#{guessNumBean.check}"/>
+                                 action="#{guessNumBean.check()}"/>
 
                 <h:commandButton id="reset" value="Reset" 
-                                 action="#{guessNumBean.reset}"/>
+                                 action="#{guessNumBean.reset()}"/>
 
                 <p></p>                
                 <div id="messages">
