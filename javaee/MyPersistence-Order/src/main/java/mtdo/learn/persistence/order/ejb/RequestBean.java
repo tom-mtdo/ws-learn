@@ -192,6 +192,7 @@ public class RequestBean {
             
             Part part = em.find(Part.class, partKey);
             logger.log(Level.INFO, "Part found: {0}", part.getPartNumber());
+            
             bom.getParts().add(part);
             part.setBomPart(bom);
         } catch (EJBException e) {

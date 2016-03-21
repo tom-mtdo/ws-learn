@@ -39,14 +39,14 @@ public class ConfigBean {
         request.createPart("SDFG-ERTY-BN", 7, "BOM PART",
                 new java.util.Date(), "PARTQWERTYUIOPASXDCFVGBHNJMKL", null);
 
-//        request.addPartToBillOfMaterial("SDFG-ERTY-BN", 7,
-//                "1234-5678-01", 1);
-//        request.addPartToBillOfMaterial("SDFG-ERTY-BN", 7,
-//                "9876-4321-02", 2);
-//        request.addPartToBillOfMaterial("SDFG-ERTY-BN", 7,
-//                "5456-6789-03", 3);
-//        request.addPartToBillOfMaterial("SDFG-ERTY-BN", 7,
-//                "ABCD-XYZW-FF", 5);
+        request.addPartToBillOfMaterial("SDFG-ERTY-BN", 7,
+                "1234-5678-01", 1);
+        request.addPartToBillOfMaterial("SDFG-ERTY-BN", 7,
+                "9876-4321-02", 2);
+        request.addPartToBillOfMaterial("SDFG-ERTY-BN", 7,
+                "5456-6789-03", 3);
+        request.addPartToBillOfMaterial("SDFG-ERTY-BN", 7,
+                "ABCD-XYZW-FF", 5);
 
         request.createVendorPart("1234-5678-01", 1,
                 "PART1", 100.00, 100);
