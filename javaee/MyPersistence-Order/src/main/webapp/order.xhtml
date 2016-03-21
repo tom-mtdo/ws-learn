@@ -18,7 +18,12 @@
                     <f:facet name="header">
                         <h:outputText value="Order ID" />
                     </f:facet>
-                    <h:outputText value="#{order.orderId}"/>
+                    <h:form>
+                        <h:commandLink action="lineItem" value="#{order.orderId}">
+                            <!--h:outputText value="#{order.orderId}"/-->
+                            <f:setPropertyActionListener target="#{orderManager.currentOrder}" value="#{order.orderId}" />
+                        </h:commandLink>
+                    </h:form>
                 </h:column>
                 <h:column>
                     <f:facet name="header">

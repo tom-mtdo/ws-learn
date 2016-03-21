@@ -25,6 +25,10 @@ public class RequestBean {
     
     private static final Logger logger = Logger.getLogger("requestBean");
     
+    public List<Part> getAllParts(){
+        return em.createNamedQuery("findAllParts").getResultList();
+    }
+    
     // create parts
     public void createPart(String partNumber,
             int revision,

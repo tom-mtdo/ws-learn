@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIParameter;
 import javax.faces.event.ActionEvent;
 import mtdo.learn.persistence.order.ejb.RequestBean;
 import mtdo.learn.persistence.order.entity.CustomerOrder;
 import mtdo.learn.persistence.order.entity.LineItem;
+import mtdo.learn.persistence.order.entity.Part;
 
 @ManagedBean
 @SessionScoped
@@ -29,17 +30,61 @@ public class OrderManager implements Serializable{
     private String  newShipmentInfo;
     private char    newOrderStatus;
     private int     newOrderDiscount;
+    
+    private List<Part> newOrderParts;
+    private String selectedPartNumber;
+    private int selectedRevision;
+    private Long selectedVendorPartNumber;
 
-    public List<LineItem> getLineItems(){
+    public void addLineItem(){
         try{
-            return requestBean.getLineItems(this.currentOrder);
-        }catch(Exception e){
-            logger.warning(e.getMessage());
-            return null;
+            List<LineItem> lineItems = requestBean.getLineItems(currentOrder);
+            logger.log(Level.INFO, "There are {0} line items in {1}.", 
+                    new Object[]{lineItems.size(), currentOrder});
+            requestBean.addLineItem(this.currentOrder,
+                    this.selectedPartNumber,
+                    this.selectedRevision,
+                    1);
+            logger.log(Level.INFO, "Adding line item to order # {0}", 
+                    this.currentOrder);
+        } catch (Exception e){
+            logger.warning("Problem and items to order\n" + e.getMessage());
         }
     }
 
-    public List<LineItem> getAllLineItems(){
+    public String getSelectedPartNumber() {
+        return selectedPartNumber;
+    }
+
+    public void setSelectedPartNumber(String selectedPartNumber) {
+        this.selectedPartNumber = selectedPartNumber;
+    }
+
+    public int getSelectedRevision() {
+        return selectedRevision;
+    }
+
+    public void setSelectedRevision(int selectedRevision) {
+        this.selectedRevision = selectedRevision;
+    }
+
+    public Long getSelectedVendorPartNumber() {
+        return selectedVendorPartNumber;
+    }
+
+    public void setSelectedVendorPartNumber(Long selectedVendorPartNumber) {
+        this.selectedVendorPartNumber = selectedVendorPartNumber;
+    }
+    
+    public List<Part> getNewOrderParts() {
+        return requestBean.getAllParts();
+    }
+
+    public void setNewOrderParts(List<Part> newOrderParts) {
+        this.newOrderParts = newOrderParts;
+    }
+
+    public List<LineItem> getLineItems(){
         try{
             return requestBean.getLineItems(this.currentOrder);
         }catch(Exception e){
@@ -95,12 +140,12 @@ public class OrderManager implements Serializable{
         }
         
     }
-    
+
     public Integer getCurrentOrder() {
         return currentOrder;
     }
 
-    public void setCurrentOrder(int currentOrder) {
+    public void setCurrentOrder(Integer currentOrder) {
         this.currentOrder = currentOrder;
     }    
 

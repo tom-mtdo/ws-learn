@@ -35,12 +35,15 @@ import static javax.persistence.TemporalType.DATE;
 )
 public class Part implements Serializable {
     private static final long serialVersionUID = -3082087016342644227L;
+    
     private String partNumber;
     private int revision;
     private String description;
     private Date revisionDate;
     private Serializable drawing;
     private String specification;
+    
+    // links in OO
     private Part bomPart;
     private List<Part> parts;
     private VendorPart vendorPart;
@@ -119,6 +122,7 @@ public class Part implements Serializable {
         this.specification = specification;
     }
 
+    // link by create fields in DB
     @ManyToOne
     @JoinColumns({
         @JoinColumn(name="BOMPARTNUMBER", referencedColumnName="PARTNUMBER"),
@@ -132,6 +136,7 @@ public class Part implements Serializable {
         this.bomPart = bomPart;
     }
 
+    // link in DB, without a field (linked field in "other" table - Part table itself)
     @OneToMany(mappedBy="bomPart")
     public List<Part> getParts() {
         return parts;
@@ -141,6 +146,7 @@ public class Part implements Serializable {
         this.parts = parts;
     }
 
+    // link in DB, without a field (linked field in other table - vendorPart table)
     @OneToOne(mappedBy="part")
     public VendorPart getVendorPart() {
         return vendorPart;
