@@ -22,6 +22,21 @@ public class ContactController implements Serializable{
 
     @EJB
     private ContactFacade contactFacade;
+    private Contact currentContact;
+    // which contact was selected, -1: new contact
+    private int selectedIndex; 
+
+    public Contact getSelectedContact() {
+        if (currentContact == null){
+            currentContact = new Contact();
+            selectedIndex = -1;
+        }
+        return currentContact;
+    }
+
+    public void setCurrentContact(Contact currentContact) {
+        this.currentContact = currentContact;
+    }
     
     /**
      * Creates a new instance of ContactController
@@ -30,19 +45,20 @@ public class ContactController implements Serializable{
     }
     
     public String prepareAdd(){
-        addContact();
+//        addContact();
         return "/contact/Add";
     }
 
-    public void addContact(){
-        Contact contact = new Contact();
-        contact.setFirstName("Tom");
-        contact.setLastName("Do");
-        contact.setMobilePhone("123");
-        contact.setHomePhone("456");
-        contact.setEmail("tom.mtdo@gmail.com");
-        
-        contactFacade.create(contact);
+    public String addContact(){
+        contactFacade.create(currentContact);
+        return prepareAdd();
+//        Contact contact = new Contact();
+//        contact.setFirstName("Tom");
+//        contact.setLastName("Do");
+//        contact.setMobilePhone("123");
+//        contact.setHomePhone("456");
+//        contact.setEmail("tom.mtdo@gmail.com");        
+//        contactFacade.create(contact);
     }
     
 }

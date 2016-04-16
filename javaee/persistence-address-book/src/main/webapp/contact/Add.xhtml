@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/template.xhtml">
         <ui:define name="pageTitle">
             Address Book - Add
@@ -12,8 +13,34 @@
         </ui:define>
         <ui:define name="body">
             <h:form>
-                <h:outputLabel value="First Name"/>
+                <h:outputLabel for="firstName" value="First Name"/>
+                <h:inputText id="firstName" value="#{contactController.selectedContact.firstName}" title="Enter first name"/>
+                <br/>
+                <h:outputLabel for="lastName" value="Last Name"/>
+                <h:inputText id="lastName" value="#{contactController.selectedContact.lastName}" title="Enter last name"/>
+                <br/>
+                <h:outputLabel for="email" value="Email"/>
+                <h:inputText id="email" value="#{contactController.selectedContact.email}" title="Enter email"/>
+                <br/>
+                <h:outputLabel for="mobilePhone" value="Mobile Phone"/>
+                <h:inputText id="mobilePhone" value="#{contactController.selectedContact.mobilePhone}" title="Enter mobile phone"/>
+                <br/>
+                <h:outputLabel for="homePhone" value="Home Phone"/>
+                <h:inputText id="homePhone" value="#{contactController.selectedContact.homePhone}" title="Enter home phone"/>
+                <br/>
+                <h:outputLabel for="dob" value="Birth Day"/>
+                <h:inputText id="dob" value="#{contactController.selectedContact.birthday}" title="Enter birth day">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                </h:inputText>
+                <br/>
+                <h:commandLink action="#{contactController.addContact()}" value="Create Contact"/>
             </h:form>
+            <div class="messagecolor">
+                <h:messages showSummary="true"
+                        showDetail="false"
+                        errorStyle="color: #d20005" 
+                        infoStyle="color: green"/>
+            </div>
         </ui:define>
     </ui:composition>
 </html>
