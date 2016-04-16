@@ -5,9 +5,10 @@
  */
 package mtdo.learn.jee.addressbook.web;
 
+import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
+import javax.enterprise.context.SessionScoped;
 import mtdo.learn.jee.addressbook.ejb.ContactFacade;
 import mtdo.learn.jee.addressbook.entity.Contact;
 
@@ -16,10 +17,10 @@ import mtdo.learn.jee.addressbook.entity.Contact;
  * @author thangdo
  */
 @Named(value = "contactController")
-@Dependent
-public class ContactController {
+@SessionScoped
+public class ContactController implements Serializable{
 
-    @Inject
+    @EJB
     private ContactFacade contactFacade;
     
     /**
