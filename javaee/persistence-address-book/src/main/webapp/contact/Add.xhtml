@@ -33,7 +33,12 @@
                     <f:convertDateTime pattern="MM/dd/yyyy" />
                 </h:inputText>
                 <br/>
-                <h:commandLink action="#{contactController.addContact()}" value="Create Contact"/>
+                <br/>
+                <h:commandLink action="#{contactController.addContact()}" value="Save"/>
+                <br/>
+                <br/>
+                <h:commandLink action="/index" value="Index" immediate="true"/>
+                
             </h:form>
             <div class="messagecolor">
                 <h:messages showSummary="true"

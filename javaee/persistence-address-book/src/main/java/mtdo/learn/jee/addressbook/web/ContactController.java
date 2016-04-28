@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import mtdo.learn.jee.addressbook.ejb.ContactFacade;
 import mtdo.learn.jee.addressbook.entity.Contact;
 
@@ -16,15 +18,23 @@ import mtdo.learn.jee.addressbook.entity.Contact;
  *
  * @author thangdo
  */
-@Named(value = "contactController")
+@Named
 @SessionScoped
 public class ContactController implements Serializable{
 
     @EJB
     private ContactFacade contactFacade;
+    private DataModel items = null;
     private Contact currentContact;
     // which contact was selected, -1: new contact
     private int selectedIndex; 
+
+    public DataModel getItems() {
+        if (items == null){
+            return new ListDataModel(contactFacade.findRange(new int[]{0,10}));
+        }
+        return items;
+    }
 
     public Contact getSelectedContact() {
         if (currentContact == null){
@@ -52,13 +62,6 @@ public class ContactController implements Serializable{
     public String addContact(){
         contactFacade.create(currentContact);
         return prepareAdd();
-//        Contact contact = new Contact();
-//        contact.setFirstName("Tom");
-//        contact.setLastName("Do");
-//        contact.setMobilePhone("123");
-//        contact.setHomePhone("456");
-//        contact.setEmail("tom.mtdo@gmail.com");        
-//        contactFacade.create(contact);
     }
     
 }
