@@ -8,8 +8,8 @@
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
-
 <!--
+
     <jta-data-source>jdbc/learn</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>

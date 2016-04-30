@@ -9,6 +9,9 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+//import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import mtdo.learn.jee.addressbook.ejb.ContactFacade;
@@ -56,9 +59,26 @@ public class ContactController implements Serializable{
     
     public String prepareAdd(){
 //        addContact();
+        currentContact = new Contact();
+        selectedIndex = -1;
         return "/contact/Add";
     }
 
+    public String prepareView(){
+//    public void prepareView(){
+//        addContact();
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Before get data"));
+        currentContact = (Contact)getItems().getRowData();
+        context.addMessage(null, new FacesMessage("First name: " + currentContact.getFirstName()));        
+//        
+//        context.addMessage(null, new FacesMessage("After get data"));
+//        
+//        selectedIndex = items.getRowIndex();
+        return "/contact/View";
+    }
+
+    
     public String addContact(){
         contactFacade.create(currentContact);
         return prepareAdd();

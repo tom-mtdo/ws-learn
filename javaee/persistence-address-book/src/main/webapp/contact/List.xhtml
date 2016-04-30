@@ -32,6 +32,44 @@
                             </f:facet>
                             <h:outputText value="#{item.lastName}"/>
                         </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="First Name"/>
+                            </f:facet>
+                            <h:outputText value="#{item.firstName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Birth Day"/>
+                            </f:facet>
+                            <h:outputText value="#{item.birthday}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Home Phone"/>
+                            </f:facet>
+                            <h:outputText value="#{item.homePhone}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Mobile Phone"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mobilePhone}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Actions"/>
+                            </f:facet>
+                            <h:outputText value="View"/>&nbsp;
+                            <h:commandLink value="Edit" action="#{contactController.prepareView()}"/>&nbsp;
+                            <h:outputText value="Delete"/>
+                        </h:column>                        
                     </h:dataTable>
                 </h:panelGroup>
             </h:form>
