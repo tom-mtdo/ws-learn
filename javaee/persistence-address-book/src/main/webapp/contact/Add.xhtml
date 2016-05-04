@@ -13,29 +13,43 @@
         </ui:define>
         <ui:define name="body">
             <h:form>
-                <h:outputLabel for="firstName" value="First Name"/>
-                <h:inputText id="firstName" value="#{contactController.selectedContact.firstName}" title="Enter first name"/>
-                <br/>
-                <h:outputLabel for="lastName" value="Last Name"/>
-                <h:inputText id="lastName" value="#{contactController.selectedContact.lastName}" title="Enter last name"/>
-                <br/>
-                <h:outputLabel for="email" value="Email"/>
-                <h:inputText id="email" value="#{contactController.selectedContact.email}" title="Enter email"/>
-                <br/>
-                <h:outputLabel for="mobilePhone" value="Mobile Phone"/>
-                <h:inputText id="mobilePhone" value="#{contactController.selectedContact.mobilePhone}" title="Enter mobile phone"/>
-                <br/>
-                <h:outputLabel for="homePhone" value="Home Phone"/>
-                <h:inputText id="homePhone" value="#{contactController.selectedContact.homePhone}" title="Enter home phone"/>
-                <br/>
-                <h:outputLabel for="dob" value="Birth Day"/>
-                <h:inputText id="dob" value="#{contactController.selectedContact.birthday}" title="Enter birth day">
-                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                </h:inputText>
-                <br/>
-                <br/>
+                <table>
+                    <tr>
+                        <td><h:outputLabel for="firstName" value="First Name"/></td>
+                        <td><h:inputText id="firstName" value="#{contactController.selectedContact.firstName}" title="Enter first name"/></td>
+                        <td><h:message for="firstName"/> </td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel for="lastName" value="Last Name"/></td>
+                        <td><h:inputText id="lastName" value="#{contactController.selectedContact.lastName}" title="Enter last name"/></td>
+                        <td><h:message for="lastName"/> </td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel for="email" value="Email"/></td>
+                        <td><h:inputText id="email" value="#{contactController.selectedContact.email}" title="Enter email"/></td>
+                        <td><h:message for="email"/> </td>                        
+                    </tr>
+                    <tr>                    
+                        <td><h:outputLabel for="mobilePhone" value="Mobile Phone"/></td>
+                        <td><h:inputText id="mobilePhone" value="#{contactController.selectedContact.mobilePhone}" title="Enter mobile phone"/></td>
+                        <td><h:message for="mobilePhone"/> </td>                                                
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel for="homePhone" value="Home Phone"/></td>
+                        <td><h:inputText id="homePhone" value="#{contactController.selectedContact.homePhone}" title="Enter home phone"/></td>
+                        <td><h:message for="homePhone"/> </td>                                                
+                    </tr>
+                    <tr>
+                        <td><h:outputLabel for="dob" value="Birth Day"/></td>
+                        <td><h:inputText id="dob" value="#{contactController.selectedContact.birthday}" title="Enter birth day">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText></td>
+                        <td><h:message for="dob"/> </td>                                                
+                    </tr>
+                </table>
                 <h:commandLink action="#{contactController.addContact()}" value="Save"/>
                 <br/>
+                <h:commandLink action="/contact/List" value="List contacts" immediate="true"/>
                 <br/>
                 <h:commandLink action="/index" value="Index" immediate="true"/>
                 

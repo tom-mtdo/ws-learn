@@ -6,12 +6,16 @@
 package mtdo.learn.jee.addressbook.web;
 
 import java.io.Serializable;
+import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 //import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import mtdo.learn.jee.addressbook.ejb.ContactFacade;
@@ -64,24 +68,80 @@ public class ContactController implements Serializable{
         return "/contact/Add";
     }
 
-    public String prepareView(){
-//    public void prepareView(){
-//        addContact();
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Before get data"));
-        currentContact = (Contact)getItems().getRowData();
-        context.addMessage(null, new FacesMessage("First name: " + currentContact.getFirstName()));        
-//        
-//        context.addMessage(null, new FacesMessage("After get data"));
-//        
-//        selectedIndex = items.getRowIndex();
+
+    public String prepareView(Contact contact){
+//        have to use getItems(), if use items then not work 
+//      Why???????????? because session finish ?
+//        currentContact = (Contact)getItems().getRowData();        
+        currentContact = contact;
+        //selectedIndex = getItems().getRowIndex();
+
+//        FacesContext context = FacesContext.getCurrentInstance();
+//        context.addMessage(null, new FacesMessage("First Name " + currentContact.getFirstName()));
+
         return "/contact/View";
     }
 
+    public String prepareEdit(){
+        currentContact = (Contact)getItems().getRowData();
+        selectedIndex = getItems().getRowIndex();
+        return "/contact/Edit";
+    }
     
     public String addContact(){
         contactFacade.create(currentContact);
+        
+        // inform success
+        FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Contact created", "Contact created");
+        FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
+
         return prepareAdd();
     }
+
+    @FacesConverter(forClass=Contact.class)
+    public static class ContactControllerConverter implements Converter {
+
+        @Override
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            if (value == null || value.length() == 0) {
+                return null;
+            }
+            ContactController controller = (ContactController)facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "contactController");
+            return controller.contactFacade.find(getKey(value));
+        }
+
+        java.lang.Long getKey(String value) {
+            java.lang.Long key;
+            key = Long.valueOf(value);
+            return key;
+        }
+
+        String getStringKey(java.lang.Long value) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(value);
+            return sb.toString();
+        }
+
+        @Override
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+            if (object == null) {
+                return null;
+            }
+            if (object instanceof Contact) {
+                Contact o = (Contact) object;
+                return getStringKey(o.getId());
+            } else {
+                throw new IllegalArgumentException("object " + 
+                        object + 
+                        " is of type " + 
+                        object.getClass().getName() + 
+                        "; expected type: " +
+                        ContactController.class.getName());
+            }
+        }
+
+    }
+
     
 }

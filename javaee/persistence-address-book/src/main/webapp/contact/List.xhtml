@@ -66,8 +66,8 @@
                             <f:facet name="header">
                                 <h:outputText value="Actions"/>
                             </f:facet>
-                            <h:outputText value="View"/>&nbsp;
-                            <h:commandLink value="Edit" action="#{contactController.prepareView()}"/>&nbsp;
+                            <h:commandLink value="View" action="#{contactController.prepareView(item)}"/>&nbsp;
+                            <h:commandLink value="Edit" action="#{contactController.prepareEdit()}"/>&nbsp;
                             <h:outputText value="Delete"/>
                         </h:column>                        
                     </h:dataTable>
