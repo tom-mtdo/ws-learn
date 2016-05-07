@@ -13,11 +13,10 @@
         </ui:define>
         <ui:define name="body">
             <h:form class="jsfcrud_list_form">
-                List contact details
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: #d20005" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="There is no contact" rendered="#{(contactController.items == null)||(contactController.items.rowCount == 0)}"/>
+                <h:outputText escape="false" value="(There is no contact)" rendered="#{(contactController.items == null)||(contactController.items.rowCount == 0)}"/>
                 <h:panelGroup rendered="#{contactController.items.rowCount > 0}">
                     <h:dataTable value="#{contactController.items}" var="item" summary="Contact list" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
@@ -67,11 +66,15 @@
                                 <h:outputText value="Actions"/>
                             </f:facet>
                             <h:commandLink value="View" action="#{contactController.prepareView(item)}"/>&nbsp;
-                            <h:commandLink value="Edit" action="#{contactController.prepareEdit()}"/>&nbsp;
-                            <h:outputText value="Delete"/>
+                            <h:commandLink value="Edit" action="#{contactController.prepareEdit(item)}"/>&nbsp;
+                            <h:commandLink value="Delete" action="#{contactController.deleteContact(item)}"/>&nbsp;
                         </h:column>                        
                     </h:dataTable>
                 </h:panelGroup>
+                <br/>
+                <h:commandLink value="Add Contact" action="#{contactController.prepareAdd()}"/>&nbsp;
+                <br/>
+                <h:commandLink value="Index" action="/index"/>&nbsp;
             </h:form>
         </ui:define>
     </ui:composition>

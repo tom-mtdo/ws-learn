@@ -82,9 +82,10 @@ public class ContactController implements Serializable{
         return "/contact/View";
     }
 
-    public String prepareEdit(){
-        currentContact = (Contact)getItems().getRowData();
-        selectedIndex = getItems().getRowIndex();
+    public String prepareEdit(Contact contact){
+//        currentContact = (Contact)getItems().getRowData();
+//        selectedIndex = getItems().getRowIndex();
+        currentContact = contact;
         return "/contact/Edit";
     }
     
@@ -96,6 +97,27 @@ public class ContactController implements Serializable{
         FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
 
         return prepareAdd();
+    }
+    
+    public String editContact(){
+        contactFacade.edit(currentContact);
+
+        // inform success
+        FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Contact edited", "Contact edited");
+        FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
+
+        return "/contact/Edit";        
+    }
+
+    public String deleteContact(Contact contact){
+        contactFacade.remove(contact);
+        items = null;
+        
+        // inform success
+        FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Contact deleted", "Contact deleted");
+        FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
+
+        return "/contact/List";
     }
 
     @FacesConverter(forClass=Contact.class)
