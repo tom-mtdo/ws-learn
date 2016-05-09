@@ -14,23 +14,29 @@
         <ui:define name="body">
             View contact details
             <h:form>
-                <h:outputLabel for="firstName" value="First Name"/>
-                <h:outputText id="firstName" value="#{contactController.selectedContact.firstName}" title="Enter first name"/>
+                <h:outputLabel for="firstName" value="#{bundle.ViewContactTitle_firstName}"/>
+                <h:outputText id="firstName" value="#{contactController.selectedContact.firstName}" 
+                              title="#{bundle.ViewContactTitle_firstName}"/>
                 <br/>
-                <h:outputLabel for="lastName" value="Last Name"/>
-                <h:outputText id="lastName" value="#{contactController.selectedContact.lastName}" title="Enter last name"/>
+                <h:outputLabel for="lastName" value="#{bundle.ViewContactLable_lastName}"/>
+                <h:outputText id="lastName" value="#{contactController.selectedContact.lastName}" 
+                              title="#{bundle.ViewContactTitle_lastName}"/>
                 <br/>
                 <h:outputLabel for="email" value="Email"/>
-                <h:outputText id="email" value="#{contactController.selectedContact.email}" title="Enter email"/>
+                <h:outputText id="email" value="#{contactController.selectedContact.email}" 
+                              title="Enter email"/>
                 <br/>
                 <h:outputLabel for="mobilePhone" value="Mobile Phone"/>
-                <h:outputText id="mobilePhone" value="#{contactController.selectedContact.mobilePhone}" title="Enter mobile phone"/>
+                <h:outputText id="mobilePhone" value="#{contactController.selectedContact.mobilePhone}" 
+                              title="Enter mobile phone"/>
                 <br/>
                 <h:outputLabel for="homePhone" value="Home Phone"/>
-                <h:outputText id="homePhone" value="#{contactController.selectedContact.homePhone}" title="Enter home phone"/>
+                <h:outputText id="homePhone" value="#{contactController.selectedContact.homePhone}" 
+                              title="Enter home phone"/>
                 <br/>
                 <h:outputLabel for="dob" value="Birth Day"/>
-                <h:outputText id="dob" value="#{contactController.selectedContact.birthday}" title="Enter birth day">
+                <h:outputText id="dob" value="#{contactController.selectedContact.birthday}" 
+                              title="Enter birth day">
                     <f:convertDateTime pattern="MM/dd/yyyy" />
                 </h:outputText>
                 <br/>

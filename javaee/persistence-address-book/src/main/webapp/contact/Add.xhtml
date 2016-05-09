@@ -15,33 +15,39 @@
             <h:form>
                 <table>
                     <tr>
-                        <td><h:outputLabel for="firstName" value="First Name"/></td>
-                        <td><h:inputText id="firstName" value="#{contactController.selectedContact.firstName}" title="Enter first name"/></td>
+                        <td><h:outputLabel for="firstName" value="#{bundle.AddContactLable_firstName}"/></td>
+                        <td><h:inputText id="firstName" value="#{contactController.selectedContact.firstName}" 
+                                         title="#{bundle.AddContactTitle_firstName}"/></td>
                         <td><h:message for="firstName"/> </td>
                     </tr>
                     <tr>
-                        <td><h:outputLabel for="lastName" value="Last Name"/></td>
-                        <td><h:inputText id="lastName" value="#{contactController.selectedContact.lastName}" title="Enter last name"/></td>
+                        <td><h:outputLabel for="lastName" value="#{bundle.AddContactLable_lastName}"/></td>
+                        <td><h:inputText id="lastName" value="#{contactController.selectedContact.lastName}" 
+                                         title="#{bundle.AddContactLable_lastName}"/></td>
                         <td><h:message for="lastName"/> </td>
                     </tr>
                     <tr>
                         <td><h:outputLabel for="email" value="Email"/></td>
-                        <td><h:inputText id="email" value="#{contactController.selectedContact.email}" title="Enter email"/></td>
+                        <td><h:inputText id="email" value="#{contactController.selectedContact.email}" 
+                                         title="Enter email"/></td>
                         <td><h:message for="email"/> </td>                        
                     </tr>
                     <tr>                    
                         <td><h:outputLabel for="mobilePhone" value="Mobile Phone"/></td>
-                        <td><h:inputText id="mobilePhone" value="#{contactController.selectedContact.mobilePhone}" title="Enter mobile phone"/></td>
+                        <td><h:inputText id="mobilePhone" value="#{contactController.selectedContact.mobilePhone}" 
+                                         title="Enter mobile phone"/></td>
                         <td><h:message for="mobilePhone"/> </td>                                                
                     </tr>
                     <tr>
                         <td><h:outputLabel for="homePhone" value="Home Phone"/></td>
-                        <td><h:inputText id="homePhone" value="#{contactController.selectedContact.homePhone}" title="Enter home phone"/></td>
+                        <td><h:inputText id="homePhone" value="#{contactController.selectedContact.homePhone}" 
+                                         title="Enter home phone"/></td>
                         <td><h:message for="homePhone"/> </td>                                                
                     </tr>
                     <tr>
                         <td><h:outputLabel for="dob" value="Birth Day"/></td>
-                        <td><h:inputText id="dob" value="#{contactController.selectedContact.birthday}" title="Enter birth day">
+                        <td><h:inputText id="dob" value="#{contactController.selectedContact.birthday}" 
+                                         title="Enter birth day">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:inputText></td>
                         <td><h:message for="dob"/> </td>                                                
