@@ -5,6 +5,8 @@
  */
 package mtdo.learn.jee.addressbook.ejb;
 
+import java.util.Date;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +16,8 @@ import mtdo.learn.jee.addressbook.entity.Contact;
  *
  * @author thangdo
  */
-@Stateless
+//@Stateless
+@Stateful
 public class ContactFacade extends AbstractFacade{
 
     @PersistenceContext(unitName = "my-persistence-address-bookPU")
@@ -29,4 +32,17 @@ public class ContactFacade extends AbstractFacade{
         return em;
     }
     
+    public Contact createContact(
+            String firstName,
+            String lastName,
+            Date birthDay,
+            String homePhone,
+            String mobilePhone,
+            String email){
+
+        Contact contact = new Contact(firstName, lastName, birthDay,
+            homePhone, mobilePhone, email);
+        super.create(contact);
+        return contact;
+    }
 }

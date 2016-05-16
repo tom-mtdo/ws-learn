@@ -50,6 +50,22 @@ public class Contact implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     @Past
     protected Date birthday;
+
+    public Contact() {}
+
+    public Contact(String firstName, 
+            String lastName, 
+            Date birthday, 
+            String homePhone, 
+            String mobilePhone, 
+            String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.mobilePhone = mobilePhone;
+        this.homePhone = homePhone;
+        this.birthday = birthday;
+    }
     
     public Long getId() {
         return id;
@@ -73,7 +89,8 @@ public class Contact implements Serializable {
             return false;
         }
         Contact other = (Contact) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id == null && other.id != null) || 
+                (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
