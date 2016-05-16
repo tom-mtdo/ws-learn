@@ -6,7 +6,6 @@
 package mtdo.learn.jee.addressbook.web;
 
 import java.io.Serializable;
-import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -20,6 +19,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import mtdo.learn.jee.addressbook.ejb.ContactFacade;
 import mtdo.learn.jee.addressbook.entity.Contact;
+import mtdo.learn.jee.addressbook.web.util.Pagination;
 
 /**
  *
@@ -34,11 +34,53 @@ public class ContactController implements Serializable{
     private DataModel items = null;
     private Contact currentContact;
     // which contact was selected, -1: new contact
-    private int selectedIndex; 
+    private int selectedIndex;
+//    private int pageNo = 0;
+    
+    private final static int PAGE_SIZE = 2;
+    
+    private Pagination pagination = new Pagination(PAGE_SIZE) {
+        @Override
+        public int getItemsCount() {
+            return contactFacade.count();
+        }
 
+        @Override
+        public DataModel createPageDataModel() {
+            return new ListDataModel( contactFacade.findRange( new int[]{getPageFirstItem(),
+                    getPageLastItem() + 1 }) );
+        }
+    };
+
+    public Pagination getPagination() {
+        return pagination;
+    }
+
+    public void setPagination(Pagination pagination) {
+        this.pagination = pagination;
+    }
+    
+    public String goNextPage(){
+        if (pagination.isHasNextPage()){
+            pagination.nextPage();
+//            items = null;
+            pagination.createPageDataModel();
+        }
+        return "/contact/List";
+    }
+    public String goPreviousPage(){
+        if (pagination.isHasPerviousPage()){
+            pagination.previousPage();
+            pagination.createPageDataModel();
+        }
+        return "/contact/List";
+    }
+
+    
     public DataModel getItems() {
         if (items == null){
-            return new ListDataModel(contactFacade.findRange(new int[]{0,10}));
+            return pagination.createPageDataModel();
+//            return new ListDataModel(contactFacade.findRange(new int[]{0,10}));
         }
         return items;
     }

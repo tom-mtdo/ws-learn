@@ -13,7 +13,7 @@ import javax.faces.model.DataModel;
  */
 public abstract class Pagination {
     private int pageSize;
-    private int pageNo;
+    private int pageNo = 0;
 
     public Pagination(int pageSize) {
         this.pageSize = pageSize;

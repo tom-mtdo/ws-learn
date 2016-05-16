@@ -16,9 +16,17 @@
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: #d20005" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="(There is no contact)" rendered="#{(contactController.items == null)||(contactController.items.rowCount == 0)}"/>
+                <h:outputText escape="false" value="(There is no contact)" 
+                              rendered="#{(contactController.items == null)||(contactController.items.rowCount == 0)}"/>
                 <h:panelGroup rendered="#{contactController.items.rowCount > 0}">
-                    <h:dataTable value="#{contactController.items}" var="item" summary="Contact list" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:outputText value="#{contactController.pagination.pageFirstItem + 1}..
+                                  #{contactController.pagination.pageLastItem + 1}/
+                                  #{contactController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink value="Previous" action="#{contactController.goPreviousPage()}" rendered="#{contactController.pagination.hasPerviousPage}"/>&nbsp;
+                    <h:commandLink value="Next" action="#{contactController.goNextPage()}" rendered="#{contactController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{contactController.items}" var="item" summary="Contact list" 
+                                 border="0" cellpadding="2" cellspacing="0" 
+                                 rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Contact Id"/>
