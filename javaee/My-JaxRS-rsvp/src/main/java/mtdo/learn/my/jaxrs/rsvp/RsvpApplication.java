@@ -5,7 +5,7 @@
  * compliance with  the terms of the License at:
  * http://java.net/projects/javaeetutorial/pages/BerkeleyLicense
  */
-package mtdo.learn.myjaxrs.rsvp.rest;
+package mtdo.learn.my.jaxrs.rsvp;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -14,7 +14,7 @@ import javax.ws.rs.core.Application;
  *
  * @author ievans
  */
-@ApplicationPath("/rsvp")
-public class MyJaxRSrsvpApplication extends Application {
+@ApplicationPath("/webapi")
+public class RsvpApplication extends Application {
 
 }
