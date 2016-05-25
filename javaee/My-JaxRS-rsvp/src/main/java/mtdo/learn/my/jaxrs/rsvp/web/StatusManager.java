@@ -11,6 +11,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
@@ -34,6 +35,14 @@ public class StatusManager implements Serializable{
 
     public StatusManager() {
         this.client = ClientBuilder.newClient();
+    }
+    
+    public String updateEventName(Event event, String newName){
+        client.target(baseUri)
+                .path(event.getId().toString())
+                .request(MediaType.APPLICATION_XML)
+                .post(Entity.xml(newName));
+        return "index";
     }
     
     public List<Event> getEvents() {
