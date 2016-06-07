@@ -1,2 +1,4 @@
 # ws-learn
-Learning new tech
+- Git reposistory
+- Learning new tech
+- javaee: Netbean working dir
