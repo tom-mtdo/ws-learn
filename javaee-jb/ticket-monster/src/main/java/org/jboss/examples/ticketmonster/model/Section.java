@@ -12,10 +12,12 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(uniqueConstraints=@UniqueConstraint(columnNames={"name", "venue_id"}))
+@JsonIgnoreProperties("venue")
 public class Section implements Serializable {
 
 	@Column

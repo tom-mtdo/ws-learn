@@ -14,9 +14,12 @@ import javax.persistence.Temporal;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "date", "show_id" }))
+@JsonIgnoreProperties("show")
 public class Performance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
