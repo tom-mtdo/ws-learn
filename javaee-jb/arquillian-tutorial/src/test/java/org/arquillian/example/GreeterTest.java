@@ -14,10 +14,11 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class GreeterTest {
 
+	// choose what to pack to deploy
 	@Deployment
     public static JavaArchive createDeployment() {
         JavaArchive jar =  ShrinkWrap.create(JavaArchive.class)
-            .addClass(Greeter.class)
+            .addClasses(Greeter.class, PhraseBuilder.class)
             .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
         System.out.println(jar.toString(true));
         

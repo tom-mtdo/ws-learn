@@ -14,10 +14,12 @@
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>mtdo.learn.javaee.ticketmonster</groupId>
+    <groupId>mtdo.learn.javaeejb.ticketmonster</groupId>
     <artifactId>ticket-monster</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
@@ -25,33 +27,6 @@
     <description>A starter Java EE 7 webapp project for use on JBoss WildFly / WildFly, generated from the jboss-javaee6-webapp archetype</description>
 
     <url>http://wildfly.org</url>
-
-    <repositories>
-        <repository>
-            <id>redhat-techpreview-all-repository</id>
-            <url>https://maven.repository.redhat.com/techpreview/all/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>redhat-techpreview-all-repository</id>
-            <url>https://maven.repository.redhat.com/techpreview/all/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -81,10 +56,12 @@
 
         <!-- maven-compiler-plugin -->
         <maven.compiler.target>1.7</maven.compiler.target>
-        <maven.compiler.source>1.7</maven.compiler.source> 
-       
-        <version.jboss.bom.eap>6.3.2.GA</version.jboss.bom.eap>
-        <version.jboss.bom.wfk>2.7.0-redhat-1</version.jboss.bom.wfk>        
+        <maven.compiler.source>1.7</maven.compiler.source>
+        
+        <!-- Rest service jaxrs-compiler-plugin -->
+        <org.jboss.spec.javax.ws.rs>1.0.0.Final</org.jboss.spec.javax.ws.rs>
+        <org.jboss.spec.javax.servlet>1.0.2.Final</org.jboss.spec.javax.servlet>
+        
     </properties>
 
 
@@ -112,35 +89,15 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- http://mvnrepository.com/artifact/org.wildfly.bom/jboss-javaee-7.0-with-resteasy -->
             <dependency>
-		        <groupId>org.apache.bval</groupId>
-		        <artifactId>org.apache.bval.bundle</artifactId>
-		        <version>1.1.1</version>
-		        <scope>provided</scope>
-	      	</dependency>
-	      	<!--  
-            <dependency>
-                <groupId>org.jboss.bom.eap</groupId>
-                <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
-                <version>${version.jboss.bom.eap}</version>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>jboss-javaee-7.0-with-resteasy</artifactId>
+                <version>${version.jboss.bom}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-             -->	      	
-	      	<dependency>
-	            <groupId>org.jboss.bom.eap</groupId>
-	            <artifactId>jboss-javaee-6.0-with-resteasy</artifactId>
-	            <version>${version.jboss.bom.eap}</version>
-	            <type>pom</type>
-	            <scope>import</scope>
-        	</dependency>
-            <dependency>
-                <groupId>org.jboss.bom.wfk</groupId>
-                <artifactId>jboss-javaee-6.0-with-tools</artifactId>
-                <version>${version.jboss.bom.wfk}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+            
         </dependencies>
     </dependencyManagement>
 
@@ -252,13 +209,7 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-		    <groupId>org.apache.bval</groupId>
-		    <artifactId>org.apache.bval.bundle</artifactId>
-		    <scope>provided</scope>
-    	</dependency>
-
- 		<!-- RESTEasy dependencies that bring in Jackson Core and RESTEasy APIs+SPIs, which we use for
+        <!-- RESTEasy dependencies that bring in Jackson Core and RESTEasy APIs+SPIs, which we use for
             fine tuning the content of the JSON responses -->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
@@ -270,21 +221,18 @@
             <artifactId>resteasy-jaxrs</artifactId>
             <scope>provided</scope>
         </dependency>
-      	<dependency>
+        <!-- REST: jaxrs -->		
+		<dependency>
             <groupId>org.jboss.spec.javax.ws.rs</groupId>
-            <artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
+		    <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+		    <version>${org.jboss.spec.javax.ws.rs}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.spec.javax.servlet</groupId>
             <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+            <version>${org.jboss.spec.javax.servlet}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-depchain</artifactId>
-            <type>pom</type>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
