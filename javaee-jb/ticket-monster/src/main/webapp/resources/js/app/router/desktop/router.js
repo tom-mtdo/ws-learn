@@ -7,13 +7,13 @@ define("router", [
     'configuration',
     'utilities',
 //    'app/models/booking',
-//    'app/models/event',
+    'app/models/event',
 //    'app/models/venue',
 //    'app/collections/bookings',
-//    'app/collections/events',
+    'app/collections/events',
 //    'app/collections/venues',
     'app/views/desktop/home',
-//    'app/views/desktop/events',
+    'app/views/desktop/events',
 //    'app/views/desktop/venues',
 //    'app/views/desktop/create-booking',
 //    'app/views/desktop/bookings',
@@ -27,13 +27,13 @@ define("router", [
             config,
             utilities,
 //            Booking,
-//            Event,
+            Event,
 //            Venue,
 //            Bookings,
-//            Events,
+            Events,
 //            Venues,
             HomeView,
-//            EventsView,
+            EventsView,
 //            VenuesView,
 //            CreateBookingView,
 //            BookingsView,
@@ -62,7 +62,7 @@ define("router", [
         routes:{
             "":"home",
             "about":"home",
-//            "events":"events",
+            "events":"events",
 //            "events/:id":"eventDetail",
 //            "venues":"venues",
 //            "venues/:id":"venueDetail",
@@ -73,6 +73,11 @@ define("router", [
 //            "ignore":"ignore",
 //            "*actions":"defaultHandler"
         },
+
+        events:function () {
+        	utilities.viewManager.showView(new HomeView({el:$("#content")}));
+        },
+
 //        events:function () {
 //            var events = new Events();
 //            var eventsView = new EventsView({model:events, el:$("#content")});
