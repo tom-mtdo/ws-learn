@@ -37,10 +37,15 @@
       </div>
     </header>
     <section id="main">
-      <ul id="todo-list"></ul>
+      <ul id="todo-list">
+	      <!--  -->
+	      <!-- content will be mainly updated here -->
+	      <!--  -->
+      </ul>
     </section>
   </section>
   
+  <!-- UI template -->
   <script type="text/template" id="item-template">
     <div class="view">
       <input class="toggle" type="checkbox"  <%= completed ? 'checked' : '' %> ></input>
@@ -89,7 +94,7 @@
   	      return this.without.apply( this, this.completed() );
   	    }
 
-	    /* Tom try
+	    /* Tom try, it works
 	     	    remaining: function() {
 	        return this.filter(function( todo ) {
 	          return !todo.get('completed');

@@ -75,7 +75,18 @@ define("router", [
         },
 
         events:function () {
-        	utilities.viewManager.showView(new HomeView({el:$("#content")}));
+        	var events = new Events();     
+        	var eventsView = new EventsView({model:events, el:$("#content")});
+//        	utilities.viewManager.showView(new EventsView({el:$("#content")}));
+          events.on("reset",
+	          function () {
+	              utilities.viewManager.showView(eventsView);
+	          }).fetch({
+	              reset : true,
+	              error : function() {
+	                  utilities.displayAlert("Failed to retrieve events from the TicketMonster server.");
+	              }
+          });
         },
 
 //        events:function () {
