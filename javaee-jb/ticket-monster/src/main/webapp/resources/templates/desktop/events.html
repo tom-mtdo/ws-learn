@@ -3,9 +3,11 @@
         <div class="panel" id="itemMenu">    
 		     <%_.each(model.models, function (model) {
 		     %>
-		             <p><%=model.attributes.id%></p>
-		             <p><%=model.attributes.name%></p>
+		             <p><%=model.id%></p>
+		             <p><%=model.get('name')%></p>
 		             <p><%=model.attributes.description%></p>
+		             <p><%=model.get('category').description%></p>
+		             <p><%=model.attributes.category.description%></p>
 		     <% 
 		         });
 		     %>
