@@ -15,7 +15,8 @@ import javax.persistence.Temporal;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+//import org.codehaus.jackson.annotate.JsonIgnoreProper ties;
 
 /**
  * <p>
@@ -38,7 +39,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "date", "show_id" }))
 // TODO Document use of @JsonIgnoreProperties
-@JsonIgnoreProperties("show")
+@JsonIgnoreProperties({"show"})
 public class Performance implements Serializable {
 
     /* Declaration of fields */

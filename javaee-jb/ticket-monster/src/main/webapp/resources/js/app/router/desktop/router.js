@@ -17,7 +17,7 @@ define("router", [
 //    'app/views/desktop/venues',
 //    'app/views/desktop/create-booking',
 //    'app/views/desktop/bookings',
-//    'app/views/desktop/event-detail',
+    'app/views/desktop/event-detail',
 //    'app/views/desktop/venue-detail',
 //    'app/views/desktop/booking-detail',
 //    'app/views/desktop/monitor',
@@ -37,7 +37,7 @@ define("router", [
 //            VenuesView,
 //            CreateBookingView,
 //            BookingsView,
-//            EventDetailView,
+            EventDetailView,
 //            VenueDetailView,
 //            BookingDetailView,
 //            MonitorView,
@@ -63,7 +63,7 @@ define("router", [
             "":"home",
             "about":"home",
             "events":"events",
-//            "events/:id":"eventDetail",
+            "events/:id":"eventDetail",
 //            "venues":"venues",
 //            "venues/:id":"venueDetail",
 //            "book/:showId/:performanceId":"bookTickets",
@@ -160,6 +160,22 @@ define("router", [
 //            var monitorView = new MonitorView({el:$("#content")});
 //            utilities.viewManager.showView(monitorView);
 //        },
+
+      eventDetail:function (id) {
+    	  var model = new Event({id:id});
+//	      var eventDetailView = new EventDetailView({id:id, el:$("#content")});
+	      var eventDetailView = new EventDetailView({model:model, el:$("#content")});
+	      model.on("change",
+	      function () {
+	          utilities.viewManager.showView(eventDetailView);
+	      }).fetch({
+	          error : function() {
+	              utilities.displayAlert("Failed to retrieve the event from the TicketMonster server.");
+	          }
+	      });
+
+      },
+
 //        eventDetail:function (id) {
 //            var model = new Event({id:id});
 //            var eventDetailView = new EventDetailView({model:model, el:$("#content")});

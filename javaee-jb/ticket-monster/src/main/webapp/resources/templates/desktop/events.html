@@ -53,16 +53,33 @@
                 <!-- Carousel items -->
                 <div class="carousel-inner">
                     <%
-                    var cars = [{id:'1', description:'Hilux'}, {id:'2', description:'Landcruiser 70'}];
-                    _.each(cars, function(car) {
-            		%>
-                
+                    _.each(model.models, function(model) {
+                    	if( model.get('mediaItem')) {
+            		%>                
                 	<div class="item">
-                		<p><%=car.id%></p>
-                		<p><%=car.description%></p>
-                	</div>
+						<img src='rest/media/<%=model.attributes.mediaItem.id%>'/>
+                        <div class="carousel-caption">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h4><%=model.attributes.name%></h4>
+                                    <p><%=model.attributes.description%></p>
+                                </div>
+                                <div class="col-md-2">
+                                    <a class="btn btn-danger action" href="#events/<%=model.id%>">Book tickets</a>
+                                </div>
+                            </div>
+                        </div>						
+               		</div>
                     <%
-                     });
+                    	} else {
+                    %>
+                	<div class="item">
+                        <h4><%=model.attributes.name%></h4>
+                        <p><%=model.attributes.description%></p>                		
+                	</div>                    
+                    <%	
+                    	}
+                    });
                     %>
                 </div>	                
                 <!-- Carousel nav -->
@@ -76,59 +93,6 @@
         </div>
     </div>
 
-<!--     <div id='itemSummary' class="col-md-8 hidden-sm hidden-xs">
-        <div class="carousel-container">
-            <div id="eventCarousel" class="carousel slide">
-                Carousel items
-                <div class="carousel-inner">
-                    <%_.each(model.models, function(model) {
-                        if( model.get('mediaItem')) {
-                    %>
-                    <div class="item">
-                        <img src='rest/media/<%=model.attributes.mediaItem.id%>'/>
-
-                        <div class="carousel-caption">
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <h4><%=model.attributes.name%></h4>
-                                    <p><%=model.attributes.description%></p>
-                                </div>
-                                <div class="col-md-2">
-                                    <a class="btn btn-danger action" href="#events/<%=model.id%>">Book tickets</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <%
-                        }
-                     });
-                    %>
-                </div>
-                Carousel nav
-                <a class="carousel-control left" href="#eventCarousel" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-                <a class="carousel-control right" href="#eventCarousel" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-            </div>
-        </div>
-    </div> -->
-    
-<!--     <div class="col-md-5 col-md-offset-1">
-        <div class="panel" id="itemMenu">    
-		     <%_.each(model.models, function (model) {
-		     %>
-		             <p><%=model.id%></p>
-		             <p><%=model.get('name')%></p>
-		             <p><%=model.attributes.description%></p>
-		             <p><%=model.get('category').description%></p>
-		             <p><%=model.attributes.category.description%></p>
-		     <% 
-		         });
-		     %>
-	     </div>
-     </div> -->
 </div>    
     
 <!-- <div class="container well">
