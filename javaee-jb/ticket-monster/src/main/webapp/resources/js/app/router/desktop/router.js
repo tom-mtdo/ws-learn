@@ -15,7 +15,7 @@ define("router", [
     'app/views/desktop/home',
     'app/views/desktop/events',
 //    'app/views/desktop/venues',
-//    'app/views/desktop/create-booking',
+    'app/views/desktop/create-booking',
 //    'app/views/desktop/bookings',
     'app/views/desktop/event-detail',
 //    'app/views/desktop/venue-detail',
@@ -35,7 +35,7 @@ define("router", [
             HomeView,
             EventsView,
 //            VenuesView,
-//            CreateBookingView,
+            CreateBookingView,
 //            BookingsView,
             EventDetailView,
 //            VenueDetailView,
@@ -66,6 +66,7 @@ define("router", [
             "events/:id":"eventDetail",
 //            "venues":"venues",
 //            "venues/:id":"venueDetail",
+	        "book/:showId/:performanceId":"bookTickets",
 //            "book/:showId/:performanceId":"bookTickets",
 //            "bookings":"listBookings",
 //            "bookings/:id":"bookingDetail",
@@ -118,6 +119,17 @@ define("router", [
         home:function () {
             utilities.viewManager.showView(new HomeView({el:$("#content")}));
         },
+      
+        bookTickets:function (showId, performanceId) {
+        	createBookingView = new CreateBookingView({
+        		model:{ showId:showId, 
+        			performanceId:performanceId, 
+//        			bookingRequest:{tickets:[]}
+        		},
+        		el:$("#content")});
+        	utilities.viewManager.showView(createBookingView);
+        },
+        
 //        bookTickets:function (showId, performanceId) {
 //            var createBookingView = 
 //            	new CreateBookingView({
