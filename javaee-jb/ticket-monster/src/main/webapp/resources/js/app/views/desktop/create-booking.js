@@ -2,7 +2,7 @@ define([
     'utilities',
     'require',
     'configuration',
-//    'text!../../../../templates/desktop/booking-confirmation.html',
+    'text!../../../../templates/desktop/booking-confirmation.html',
     'text!../../../../templates/desktop/create-booking.html',
     'text!../../../../templates/desktop/ticket-categories.html',
     'text!../../../../templates/desktop/ticket-summary-view.html',
@@ -11,7 +11,7 @@ define([
     utilities,
     require,
     config,
-//    bookingConfirmationTemplate,
+    bookingConfirmationTemplate,
     createBookingTemplate,
     ticketEntriesTemplate,
     ticketSummaryViewTemplate
