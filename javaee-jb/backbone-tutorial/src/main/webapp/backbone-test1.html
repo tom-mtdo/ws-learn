@@ -54,9 +54,15 @@
 	    el:$("#container"),
 	    
 	    render:function() {
-		    if ( this.collection.length > 0 ) {
+			if (this.firstProduct){
+				var str = "<br><span>First product: " + this.firstProduct.get("name") + "</span><br>";
+		    	this.$el.append( str );
+				
+			}
+		    
+		    if ( this.products.length > 0 ) {
  				//this work
-		    	this.collection.each(this.showData, this);
+		    	this.products.each(this.showData, this);
  			     
 /*  		    	var str = "<br><span>Total product: " + this.collection.length + "</span>";
 		    	this.$el.append( str );
@@ -64,18 +70,24 @@
 		    } else{
 		    	this.$el.append( "<br><span>Product list is empty</span>" );
 			}
-			    
 	    },
 	 
 	    initialize:function () {
-	        //this.collection = new Library(books);
-	        this.collection = new Products();
-	        this.collection.fetch();
+ 			this.firstProduct = new Product({ id:1 });
+ 			this.firstProduct.fetch();
+		    
+	        this.products = new Products();
+	        this.products.fetch();
 	        this.render();
-	 
-	        this.collection.on("add", this.render, this);
-/* 	        this.collection.on("remove", this.removeBook, this);
- */	        this.collection.on("reset", this.render, this);
+
+	        this.firstProduct.on("change", this.render, this);
+	        
+	        this.products.on("add", this.render, this);
+/* 	        this.products.on("remove", this.removeBook, this);
+ */	        this.products.on("reset", this.render, this);
+
+ 			
+ 			
 	    },
 
 	    showData:function(product){
