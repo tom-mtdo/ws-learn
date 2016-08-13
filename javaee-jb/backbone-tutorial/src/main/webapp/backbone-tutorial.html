@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/ -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Hello World in Backbone.js</title>
@@ -81,6 +82,18 @@
       }
     });
 
+    var myProduct = new app.MyProduct( {id: 3} );
+    myProduct.on("change",
+    	      function () {
+    				console.log(myProduct.get('name'));
+/*     	          utilities.viewManager.showView(eventDetailView); */
+    	      }).fetch({
+    	          error : function() {
+    	              utilities.displayAlert("Failed to retrieve the event from the TicketMonster server.");
+    	          }
+    	      });
+    
+    
  	// ------ COLLECTION -------
     app.TodoList = Backbone.Collection.extend({
         model: app.Todo,

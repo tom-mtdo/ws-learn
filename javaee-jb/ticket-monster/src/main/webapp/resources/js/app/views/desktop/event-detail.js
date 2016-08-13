@@ -50,6 +50,7 @@ define([
             var selectedShowId = event.currentTarget.value;
 //            alert("Current target: " + event.currentTarget.nodeName + ", value: " + event.currentTarget.value);
 //            utilities.applyTemplate($("#eventVenueDescription"), eventVenueDescriptionTemplate, {selectedShowId:selectedShowId});
+            // get show from id, which was selected from a list
             if (selectedShowId != 0) {
                 var selectedShow = _.find(this.shows, function (show) {
                     return show.id == selectedShowId

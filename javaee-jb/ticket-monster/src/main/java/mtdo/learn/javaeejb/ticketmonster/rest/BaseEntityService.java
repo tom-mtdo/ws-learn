@@ -149,6 +149,8 @@ public abstract class BaseEntityService<T> {
      * @param criteriaBuilder - @{link CriteriaBuilder} used by the invoker
      * @param root  @{link Root} used by the invoker
      * @return a list of {@link Predicate}s that will added as query parameters
+     * 
+     * THIS IS MAIN PART OF WHERE CLAUSE
      */
     protected Predicate[] extractPredicates(MultivaluedMap<String, String> queryParameters, CriteriaBuilder criteriaBuilder, Root<T> root) {
         return new Predicate[]{};
