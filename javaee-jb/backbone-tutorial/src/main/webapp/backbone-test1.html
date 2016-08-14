@@ -75,19 +75,15 @@
 	    initialize:function () {
  			this.firstProduct = new Product({ id:1 });
  			this.firstProduct.fetch();
-		    
+	        this.firstProduct.on("change", this.render, this);
+ 			
 	        this.products = new Products();
 	        this.products.fetch();
 	        this.render();
 
-	        this.firstProduct.on("change", this.render, this);
-	        
 	        this.products.on("add", this.render, this);
 /* 	        this.products.on("remove", this.removeBook, this);
- */	        this.products.on("reset", this.render, this);
-
- 			
- 			
+ */	        this.products.on("reset", this.render, this); 		 			
 	    },
 
 	    showData:function(product){
